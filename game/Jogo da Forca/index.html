@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jogo da Forca</title>
+	<meta charset="UTF-8">
+ 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+	<div id="coisas" align="center">
+		<div>
+			<div class="inicio">
+			<div class="inicio_conteudo">
+				<br>
+				<br>
+				<label for="categoria">Escolha uma palavra para mim: </label>
+				<select class="form-control" id="categoria">
+					<option value="nome">Nome</option>
+					<option value="cor">Cor</option>
+				</select>
+				<br>
+				<button class="btn btn-primary" onclick="palavraRandom()" id="start">Start</button>
+				<br><br>
+				<h5>Ou</h5>
+				<br>
+				<button class="btn btn-primary" onclick="minhaPalavra()" id="escolho">Eu escolho a palavra</button>
+			</div>
+				<div>
+					<h1>Jogo da forca</h1>
+					<h3 id="chances"></h3>
+					<div id="secreto"><h3 id="traços" class="traços"></h3></div>
+		
+					<div class="botões">
+						<button class="letra btn btn-primary" id="letraA" value="a">A</button>
+						<button class="letra btn btn-primary" id="letraB" value="b">B</button>
+						<button class="letra btn btn-primary" id="letraC" value="c">C</button>
+						<button class="letra btn btn-primary" id="letraD" value="d">D</button>
+						<button class="letra btn btn-primary" id="letraE" value="e">E</button>
+						<button class="letra btn btn-primary" id="letraF" value="f">F</button>
+												<br><br>
+						<button class="letra btn btn-primary" id="letraG" value="g">G</button>
+						<button class="letra btn btn-primary" id="letraH" value="h">H</button>
+						<button class="letra btn btn-primary" id="letraI" value="i">I</button>
+						<button class="letra btn btn-primary" id="letraJ" value="j">J</button>
+						<button class="letra btn btn-primary" id="letraK" value="k">K</button>
+						<button class="letra btn btn-primary" id="letraL" value="l">L</button>
+												<br><br>
+						<button class="letra btn btn-primary" id="letraM" value="m">M</button>
+						<button class="letra btn btn-primary" id="letraN" value="n">N</button>
+						<button class="letra btn btn-primary" id="letraO" value="o">O</button>
+						<button class="letra btn btn-primary" id="letraP" value="p">P</button>
+						<button class="letra btn btn-primary" id="letraQ" value="q">Q</button>
+						<button class="letra btn btn-primary" id="letraR" value="r">R</button>
+												<br><br>
+						<button class="letra btn btn-primary" id="letraS" value="s">S</button>
+						<button class="letra btn btn-primary" id="letraT" value="t">T</button>
+						<button class="letra btn btn-primary" id="letraU" value="u">U</button>
+						<button class="letra btn btn-primary" id="letraV" value="v">V</button>
+						<button class="letra btn btn-primary" id="letraW" value="w">W</button>
+												<br><br>
+						<button class="letra btn btn-primary" id="letraX" value="x">X</button>
+						<button class="letra btn btn-primary" id="letraY" value="y">Y</button>
+						<button class="letra btn btn-primary" id="letraZ" value="z">Z</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="javascript/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="javascript/palavras.js"></script>
+	<script type="text/javascript"src="javascript/jogo.js"></script>
+
+</body>
+</html>

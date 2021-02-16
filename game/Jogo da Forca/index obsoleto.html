@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+ 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<style type="text/css">
+	body
+	{
+			font-family:'Comic Sans MS';
+			color: white;
+			margin-left:45px;
+			margin-right:45px;
+			width: auto;
+			height:auto;
+			background:url(img/floor.jpg);
+	}
+		#coisas
+		{
+			width: auto;
+			height: auto;
+			margin: auto;
+			background-image: linear-gradient(#32CD32,#228B22);
+			border: 17px;
+			border-style: outset;
+			border-color: #A0522D;
+			padding: 20px; /*are used to generate space around an element's content, inside of any defined borders.*/
+		}
+		.traços
+		{
+			font-family:Gabriola;
+			margin: auto; /*Ele centraliza elementos*/
+			letter-spacing:10px;
+			font-size: 60px;
+		}
+		#divDicas
+		{
+			font-family:Gabriola;
+			font-size: 33px;
+		}
+		.botões
+		{
+			padding: 20px;
+			border: 10px;
+			border-style: outset;
+			border-radius: 2px;
+			width: 30%;
+			border-color: #A0522D;
+			background:url(caderno.png);
+		}
+		.inicio_conteudo
+		{
+			position: absolute;
+		}
+		#caderno
+		{
+			position: absolute;
+		}
+
+	</style>
+	<title>Jogo da Forca</title>
+</head>
+<body>
+
+	<div id="coisas" align="center">
+		<div>
+			<div class="inicio">
+
+			<div class="inicio_conteudo">
+				
+				<br>
+				<br>
+				<label for="categoria">Escolha uma palavra para mim: </label>
+				<select class="form-control" id="categoria">
+					<option value="nome">Nome</option>
+					<option value="cor">Cor</option>
+				</select>
+				<br>
+				<button class="btn btn-primary" onclick="palavraRandom()" id="start">Start</button>
+				<br><br>
+				<h5>Ou</h5>
+				<br>
+				<button class="btn btn-primary" onclick="minhaPalavra()" id="escolho">Eu escolho a palavra</button>
+			</div>
+				<div>
+					<h1>Jogo da forca</h1>
+					<h3 id="chances"></h3>
+					<div id="secreto"></div>
+					
+					<div class="botões">
+						<button class="btn btn-primary" id="letra" value="a">A</button>
+						<button class="btn btn-primary" id="letra" value="b">B</button>
+						<button class="btn btn-primary" id="letra" value="c">C</button>
+						<button class="btn btn-primary" id="letra" value="d">D</button>
+						<button class="btn btn-primary" id="letra" value="e">E</button>
+						<button class="btn btn-primary" id="letra" value="f">F</button>
+												<br><br>
+						<button class="btn btn-primary" id="letra" value="g">G</button>
+						<button class="btn btn-primary" id="letra" value="h">H</button>
+						<button class="btn btn-primary" id="letra" value="i">I</button>
+						<button class="btn btn-primary" id="letra" value="j">J</button>
+						<button class="btn btn-primary" id="letra" value="k">K</button>
+						<button class="btn btn-primary" id="letra" value="l">L</button>
+												<br><br>
+						<button class="btn btn-primary" id="letra" value="m">M</button>
+						<button class="btn btn-primary" id="letra" value="n">N</button>
+						<button class="btn btn-primary" id="letra" value="o">O</button>
+						<button class="btn btn-primary" id="letra" value="p">P</button>
+						<button class="btn btn-primary" id="letra" value="q">Q</button>
+						<button class="btn btn-primary" id="letra" value="r">R</button>
+												<br><br>
+						<button class="btn btn-primary" id="letra" value="s">S</button>
+						<button class="btn btn-primary" id="letra" value="t">T</button>
+						<button class="btn btn-primary" id="letra" value="u">U</button>
+						<button class="btn btn-primary" id="letra" value="v">V</button>
+						<button class="btn btn-primary" id="letra" value="w">W</button>
+												<br><br>
+						<button class="btn btn-primary" id="letra" value="x">X</button>
+						<button class="btn btn-primary" id="letra" value="y">Y</button>
+						<button class="btn btn-primary" id="letra" value="z">Z</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<script type="text/javascript" src="javascript/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="javascript/palavras.js"></script>
+	<script type="text/javascript">
+	var chances = 5;
+	var acertos = 0;
+	var desabilitar;//desabilita as letras
+	var palavra;
+	var categoria;
+		function palavraRandom()
+		{		
+				//mostra as chances na pagina
+				document.getElementById("chances").innerHTML ="Chances: " + chances;
+				categoria = document.getElementById("categoria").value;//Ele vai pegar o tipo de categoria
+				if (categoria == "nome") 
+				{
+					palavra = nomes[Math.round(Math.random() * nomes.length)];
+				}
+				else if(categoria == "cor")
+				{
+					palavra = cor[Math.round(Math.random() * cor.length)];
+				}
+
+				for (var i = 0;i < palavra.length;i++)//for para colocar o numero de traços de acordo com o numero de letras em <td>
+				{
+					var tabela3 = document.createElement("td"); //cria um elemento no html <td>
+					tabela3.setAttribute("id","traços"+i); //coloca um atributo id="traços"+i
+					tabela3.setAttribute("class","traços");//coloca um atributo class=traços
+					var tracos = document.createTextNode("_");//cria o texto
+					tabela3.appendChild(tracos); //vai anexar o texto que criamos na tag<td>
+					document.getElementById("secreto").appendChild(tabela3);//anexa ele na div "secreto"
+				}		
+			$("#start").prop("disabled",true);
+			$("#escolho").prop("disabled",true);
+			$(letra).click(function(e){ //quando ouver um click na id letra ele executa uma função
+				for (var i2 = 0;i2 < palavra.length;i2++)
+				{
+					var digite = $(this).val(); //variavel vai pegar a letra que o usuario apertou através do value
+
+					if (palavra[i2] == digite) //aqui ele vai comparar as letras da palavra com a que foi apertada e se for a certa...
+					{
+
+						var certo = digite;
+						document.getElementById("traços"+i2).innerHTML = palavra[i2]; //ele vai retirar o traço e colocar a letra certa que foi apertada
+						$(this).prop("disabled",true); //vai desabilitar a letra que foi apertada
+						$(this).prop("class","btn btn-success");//a letra certa tera a cor verde 
+						acertos++;//numero de acertos
+					}
+	//"prop é uma função do Jquery aonde ele altera as propriedades(ou atributos)"
+
+				}
+				if(certo != digite)//se eu errar a letra
+				{
+					chances--;//ele vai diminuir as chances
+					document.getElementById("chances").innerHTML = "Chances: " + chances;//ele vai mostrar o numero atual de chances que eu tenho
+					$(this).prop("disabled",true); //vai desabilitar a letra apertada
+					$(this).prop("class","btn btn-danger");//a letra errada tera cor vermelha
+				}
+				if (chances == 0)//quando acabar as chances
+				{
+					alert("Acabou as Chances você perdeu");
+					desabilitar = document.getElementsByClassName("btn btn-primary");
+					$(desabilitar).prop("disabled",true);//desabilita tudo GAME OVER
+				}
+				if(acertos == palavra.length)//quando o numero de acertos de letras for igual ao numero de letras da palavra
+				{
+					alert("Parabens você acertou todas as letras!!!!!!!");
+					desabilitar = document.getElementsByClassName("btn btn-primary");
+					$(desabilitar).prop("disabled",true);
+				}
+			});
+		}
+
+		function minhaPalavra()
+		{
+			palavra = prompt("Digite a palavra: "); //A palavra que foi escolhida
+
+			while (palavra == "" || palavra == null)
+			{
+				palavra = prompt("(O CAMPO NÃO PODE FICAR VAZIO)\n Digite a palavra: "); //A palavra que foi escolhida
+			}
+			document.getElementById("chances").innerHTML = "Chances: " + chances;
+
+
+			for (var i = 0;i < palavra.length;i++)//for para colocar o numero de traços de acordo com o numero de letras em <td>
+			{
+				var tabela3 = document.createElement("td"); //cria um elemento no html <td>
+				tabela3.setAttribute("id","traços"+i); //coloca um atributo id="traços"+i
+				tabela3.setAttribute("class","traços");//coloca um atributo class
+				var tracos = document.createTextNode("_");//cria o texto
+				tabela3.appendChild(tracos); //vai anexar o texto que criamos na tag<td>
+				document.getElementById("secreto").appendChild(tabela3);//anexa ele na div "secreto"
+			}
+			$("#start").prop("disabled",true);
+			$("#escolho").prop("disabled",true);
+			$("#letra").click(function(e){ //quando ouver um click na id letra ele executa uma função
+
+				for (var i2 = 0;i2 < palavra.length;i2++)
+				{
+					var digite = $(this).val(); //variavel vai pegar a letra que o usuario apertou
+
+					if (palavra[i2] == digite) //aqui ele vai comparar as letras da palavra com a que foi apertada e se for a certa
+					{
+						var certo = digite;
+						document.getElementById("traços"+i2).innerHTML = palavra[i2]; //ele vai retirar o traço e colocar a letra certa que foi apertada
+
+						$(this).prop("disabled",true); //vai desabilitar a letra que foi apertada
+						$(this).prop("class","btn btn-success");//a letra certa tera a cor verde 
+						acertos++;
+					}
+				//"prop é uma função do Jquery aonde ele altera as propriedades(ou atributos)"
+
+				}
+
+				if(certo != digite)//se eu errar a letra
+				{
+					chances--;//ele vai diminuir as chances
+					document.getElementById("chances").innerHTML = "Chances: " + chances;//ele vai mostrar o numero atual de chances que eu tenho
+					$(this).prop("disabled",true); //vai desabilitar a letra apertada
+					$(this).prop("class","btn btn-danger");//a letra errada tera cor vermelha
+				}
+				if (chances == 0)//quando acabar as chances
+				{
+					alert("Acabou as Chances você perdeu");
+					desabilitar = document.getElementsByClassName("btn btn-primary");
+					$(desabilitar).prop("disabled",true);//desabilita tudo GAME OVER
+				}
+				if(acertos == palavra.length)//quando o numero de acertos de letras for igual ao numero de letras da palavra
+				{
+					alert("Parabens você acertou todas as letras!!!!!!!");
+					desabilitar = document.getElementsByClassName("btn btn-primary");
+					$(desabilitar).prop("disabled",true);
+				}
+			});
+		}
+
+	</script>
+
+</body>
+</html>

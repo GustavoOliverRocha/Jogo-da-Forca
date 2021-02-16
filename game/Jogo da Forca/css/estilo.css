@@ -1,0 +1,51 @@
+body
+		{
+				font-family:'Comic Sans MS';
+				color: white;
+				margin-left:45px;
+				margin-right:45px;
+				width: auto;
+				height:auto;
+				background:url(../img/floor.jpg);
+		}
+			#coisas
+			{
+				width: auto;
+				height: auto;
+				margin: auto;
+				background-image: linear-gradient(#32CD32,#228B22);
+				border: 17px;
+				border-style: outset;
+				border-color: #A0522D;
+				padding: 20px; /*are used to generate space around an element's content, inside of any defined borders.*/
+			}
+			.traços
+			{
+				font-family:Gabriola;
+				margin: auto; /*Ele centraliza elementos*/
+				letter-spacing:10px;
+				font-size: 60px;
+			}
+			#divDicas
+			{
+				font-family:Gabriola;
+				font-size: 33px;
+			}
+			.botões
+			{
+				padding: 20px;
+				border: 10px;
+				border-style: outset;
+				border-radius: 2px;
+				width: 30%;
+				border-color: #A0522D;
+				background:url(../img/caderno.png);
+			}
+			.inicio_conteudo
+			{
+				position: absolute;
+			}
+			#caderno
+			{
+				position: absolute;
+			}
