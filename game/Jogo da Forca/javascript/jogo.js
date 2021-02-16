@@ -1,11 +1,12 @@
 	var chances = 5;
 	var acertos = 0;
 	var palavra = "";
-	
+
 	function palavraRandom()
 	{		
 		//Ele vai pegar o tipo de categoria
 		var categoria = document.getElementById("categoria").value;
+
 		switch(categoria)
 		{
 			case "nome":
@@ -14,25 +15,18 @@
 			case "cor":
 				palavra = cor[Math.round(Math.random() * cor.length)].toLowerCase();
 			break
+			case "frutas":
+				palavra = frutas[Math.round(Math.random() * frutas.length)].toLowerCase();
+			break
 			default:
-					alert("categoria errada");
-					return;
+				alert("ERRO: Categoria Invalida");
+				return;
 		}
 		começarJogo();
-		/*if (categoria == "nome") 
-		{
-			palavra = nomes[Math.round(Math.random() * nomes.length)].toLowerCase();
-		}
-		else if(categoria == "cor")
-		{
-			palavra = cor[Math.round(Math.random() * cor.length)].toLowerCase();
-		}*/
-		
 	}
 
 	function minhaPalavra()
 	{
-		//A palavra que foi escolhida
 		palavra = prompt("Digite a palavra: \n(O campo não pode ficar vazio.)").toLowerCase();
 
 		if(palavra == null || palavra == "")
@@ -62,12 +56,14 @@
 			 	tracos[i] = "_";
 			 }
 		}
-		
-		$(".traços").append(tracos);
-		document.getElementById("chances").innerHTML = "Chances: " + chances;
+
+		//".prop() é uma função do Jquery aonde ele altera as propriedades(ou atributos) do elemento HTML"
 		$("#start").prop("disabled",true);
 		$("#escolho").prop("disabled",true);
-
+		$("#categoria").prop("disabled",true);
+		$(".traços").append(tracos);
+		document.getElementById("chances").innerHTML = "Chances: " + chances;
+		
 		//Quando umas das letras forem clicadas executará uma função
 		$(".letra").click(function(e){ 
 
@@ -77,10 +73,17 @@
 				var digite = $(this).val(); 
 
 				/** Aqui ele vai comparar as letras da palavra com a que foi apertada e se for a certa
-				  * Tanto faz usar a função "match()" ou comparar as variaveis*/
+				  * Tanto faz usar a função "match()" ou comparar as variaveis == 
+				  * Só estava testando as funções do javascript*/
+
 				if (palavra[i2].match(digite)) 
 				{
 					var certo = digite;
+					//Frescurinha pra deixar a primeira letra maiuscula
+					if(i2 == 0)
+					{
+						digite = digite.toUpperCase();
+					}
 					tracos[i2] = digite;
 					$(".traços").html(tracos);
 
@@ -90,9 +93,7 @@
 					//A letra certa desabilitada tera a cor verde
 					$(this).prop("class","btn btn-success");
 					acertos++;
-				}
-			//"prop é uma função do Jquery aonde ele altera as propriedades(ou atributos)"
-
+				}			
 			}
 			//se eu errar a letra
 			if(certo != digite)
@@ -113,9 +114,9 @@
 			if (chances == 0)
 			{
 				alert("Acabou as Chances você perdeu");
-				//desabilita tudo GAME OVER
 				$(".btn-primary").prop("disabled",true);
 			}
+
 			//Quando o numero de acertos de letras for igual ao numero de letras da palavra
 			if(acertos == palavra.length)
 			{
